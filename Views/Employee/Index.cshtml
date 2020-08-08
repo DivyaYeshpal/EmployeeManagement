@@ -1,0 +1,61 @@
+﻿@model IEnumerable<EmployeeDetails.Models.EmployeeDetailsViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p class="alert-success">
+@TempData["Success"]
+</p>
+<table class="table table-bordered" style="font-family:Arial">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOJ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation.DesignationName)
+        </th>
+        <th>Select</th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.EmployeeName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DOB)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DOJ)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DepartmentName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DesignationName)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }, new { @class = "glyphicon glyphicon-edit" }) |
+        @Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID }, new { onclick = "return confirm('Are you sure you wish to delete the employee @item.EmployeeName');" }) |
+       @*<input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete the id @item.EmployeeName')" />*@
+    </td>
+</tr>
+}
+
+</table>
